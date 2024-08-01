@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "ai-worker"
+version = "0.1.0"
+description = ""
+authors = ["anthonywong555 <anthony.wong@temporal.io>"]
+readme = "README.md"
+packages = [
+    { include = "**/*.py", from = "."  }
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+temporalio = "^1.6.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
