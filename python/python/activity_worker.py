@@ -5,7 +5,7 @@ from temporalio import activity
 from temporalio.client import Client
 from temporalio.worker import Worker
 
-task_queue = "say-hello-task-queue"
+task_queue = "ai-queue"
 
 @activity.defn(name='sayHelloActivity')
 async def say_hello_activity(name: str) -> str:

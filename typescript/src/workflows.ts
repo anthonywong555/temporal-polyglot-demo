@@ -6,9 +6,9 @@ interface AIActivities {
 }
 
 const { sayHelloActivity, crunchSomeNumbers } = proxyActivities<AIActivities>({
-  taskQueue: 'say-hello-task-queue',
+  taskQueue: 'ai-queue',
   scheduleToCloseTimeout: '1m'
-})
+});
 
 /** A workflow that simply calls an activity */
 export async function example(name: string): Promise<string> {
