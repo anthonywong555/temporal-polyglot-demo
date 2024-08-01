@@ -1,3 +1,3 @@
-# temporal-open-ai-demo
+# temporal-polyglot-demo
 
-This repo demostrates how you can use Temporal with Open AI or other AI models.
+This repo demostrates how you can use Temporal with other langauges.
