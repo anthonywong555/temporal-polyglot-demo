@@ -1,5 +1,5 @@
 import { Connection, Client } from '@temporalio/client';
-import { example } from './workflows';
+import { simpleExample } from './workflows';
 import { nanoid } from 'nanoid';
 
 // Source: https://stackoverflow.com/questions/61708327/create-count-up-timer-with-typescript
@@ -51,9 +51,16 @@ async function kickStartWorkflows(numberOfWorkflowExecutions: number, args: any)
     for(let i = 0; i < numberOfWorkflowExecutions; i++) {
       const workflowId = `polyglot-${i}-${nanoid()}`;
 
+      /*
       workflowExecutions.push(client.workflow.start(example, {
         workflowId,
         args,
+        taskQueue: 'hello-world',
+      }));
+      */
+      workflowExecutions.push(client.workflow.start(simpleExample, {
+        workflowId,
+        args: [i],
         taskQueue: 'hello-world',
       }));
     }
