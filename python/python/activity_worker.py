@@ -7,15 +7,14 @@ from temporalio.worker import Worker
 
 task_queue = "ai-queue"
 
-@activity.defn(name='sayHelloActivity')
-async def say_hello_activity(name: str) -> str:
-    return f"Hello, {name}!"
+@activity.defn(name="numberCrushing")
+async def crunch_some_numbers(input: int) -> int:
+    return input
 
-@activity.defn(name="crunchSomeNumbers")
-async def crunch_some_numbers() -> str:
-    randomNumber = randint(1, 5)
-    #await asyncio.sleep(randomNumber)
-    return randomNumber
+@activity.defn(name="numberCrushingProto")
+async def crunch_some_numbers_proto(input: int) -> int:
+    print(f"Number: {input}")
+    return input
 
 async def main():
     print('Connecting to Temporal ')
@@ -23,8 +22,8 @@ async def main():
     client = await Client.connect("localhost:7233")
 
     # Run activity worker
-    #worker = Worker(client, task_queue=task_queue, activities=[say_hello_activity, crunch_some_numbers], max_task_queue_activities_per_second=1)
-    worker = Worker(client, task_queue=task_queue, activities=[say_hello_activity, crunch_some_numbers])
+    #worker = Worker(client, task_queue=task_queue, activities=[crunch_some_numbers, crunch_some_numbers_proto], max_task_queue_activities_per_second=1)
+    worker = Worker(client, task_queue=task_queue, activities=[ crunch_some_numbers, crunch_some_numbers_proto])
     
     print('Spinning up AI Worker')
     await worker.run()

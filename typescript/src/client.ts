@@ -1,6 +1,7 @@
 import { Connection, Client } from '@temporalio/client';
-import { simpleExample } from './workflows';
+import { simpleExample, protobufExample } from './workflows';
 import { nanoid } from 'nanoid';
+import { ai } from '../protos/root'; 
 
 // Source: https://stackoverflow.com/questions/61708327/create-count-up-timer-with-typescript
 export class Timer {
@@ -82,8 +83,24 @@ async function kickStartWorkflows(numberOfWorkflowExecutions: number, args: any)
   }
 }
 
+async function runComplex() {
+  const client = new Client({
+    dataConverter: { payloadConverterPath: require.resolve('./payload-converter') }
+  });
+
+  const handle = await client.workflow.start(protobufExample, {
+    args: [ai.NumberCrushingInput.create({ input: 1 })],
+    taskQueue: 'hello-world',
+    workflowId: 'protobuf-workflow'
+  });
+
+  const result: ai.NumberCrushingOutput = await handle.result();
+  console.log(result.toJSON());
+}
+
 async function run() {
-  kickStartWorkflows(10, ['Temporal'])
+  //kickStartWorkflows(10, ['Temporal'])
+  await runComplex();
 }
 
 run().catch((err) => {
