@@ -17,7 +17,10 @@ export async function simpleExample(input: number): Promise<number> {
 }
 
 export async function protobufExample(input: ai.NumberCrushingInput): Promise<ai.NumberCrushingOutput> {
+  const result = await numberCrushingProto(input);
+  /*
   return ai.NumberCrushingOutput.create({
     output: 2
-  });
+  });*/
+  return result;
 }

@@ -1,4 +1,5 @@
 import asyncio
+import python.python.ai_messages_pb2 as ai_messages_pb2
 
 from random import randint
 from temporalio import activity
@@ -12,9 +13,10 @@ async def crunch_some_numbers(input: int) -> int:
     return input
 
 @activity.defn(name="numberCrushingProto")
-async def crunch_some_numbers_proto(input: int) -> int:
-    print(f"Number: {input}")
-    return input
+async def crunch_some_numbers_proto(input: ai_messages_pb2.NumberCrushingInput) -> ai_messages_pb2.NumberCrushingOutput:
+    result = ai_messages_pb2.NumberCrushingOutput()
+    result.output = input.input
+    return result
 
 async def main():
     print('Connecting to Temporal ')

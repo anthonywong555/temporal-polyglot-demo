@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package ai;
+
+message NumberCrushingInput {
+    int32 input = 1;
+}
+
+message NumberCrushingOutput {
+    int32 output = 1;
+}

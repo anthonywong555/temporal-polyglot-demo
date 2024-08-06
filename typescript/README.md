@@ -1,18 +1,17 @@
-# Hello World
+### Generate PB2 from Proto
 
-This is the default project that is scaffolded out when you run `npx @temporalio/create@latest ./myfolder`.
+```sh
+npm run build
+```
 
-The [Hello World Tutorial](https://learn.temporal.io/getting_started/typescript/hello_world_in_typescript/) walks through the code in this sample.
+Running Worker
 
-### Running this sample
+```sh
+npm run start.watch
+```
 
-1. `temporal server start-dev` to start [Temporal Server](https://github.com/temporalio/cli/#installation).
-1. `npm install` to install dependencies.
-1. `npm run start.watch` to start the Worker.
-1. In another shell, `npm run workflow` to run the Workflow Client.
+Running Client
 
-The Workflow should return:
-
-```bash
-Hello, Temporal!
+```sh
+npm run workflows
 ```
