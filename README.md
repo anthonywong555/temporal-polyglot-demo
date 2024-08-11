@@ -80,7 +80,7 @@ To run the gRPC demo, you will first need to do the following.
 To convert the *ai-messages.proto* file into *ai_messages_pb2.py*, execute the following command:
 
 ```sh
-protoc -I=. --python_out=. ai-messages.proto
+protoc -I=../protos/ --python_out=./python messages.proto namespaced-messages.proto
 ```
 
 ```sh
