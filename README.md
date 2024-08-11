@@ -54,7 +54,7 @@ Navigate to the *python* directory in your terminal.
 Run the following commands kick off the Python Activity Worker:
 
 ```sh
-poetry run python/activity_worker.py
+poetry run python python/activity_worker.py
 ```
 
 ### NodeJS
@@ -81,6 +81,10 @@ To convert the *ai-messages.proto* file into *ai_messages_pb2.py*, execute the f
 
 ```sh
 protoc -I=. --python_out=. ai-messages.proto
+```
+
+```sh
+poetry run python python/activity_worker.py
 ```
 
 ### NodeJS

@@ -1,5 +1,3 @@
-#!/bin/sh
-
 import asyncio
 import python.ai_messages_pb2 as ai_messages_pb2
 
@@ -21,15 +19,13 @@ async def crunch_some_numbers_proto(input: ai_messages_pb2.NumberCrushingInput) 
     return result
 
 async def main():
-    print('Connecting to Temporal ')
-    # Create client to localhost on default namespace
+    print('Connecting to Temporal')
     client = await Client.connect("localhost:7233")
 
-    # Run activity worker
     # worker = Worker(client, task_queue=task_queue, activities=[crunch_some_numbers, crunch_some_numbers_proto], max_task_queue_activities_per_second=1)
     worker = Worker(client, task_queue=task_queue, activities=[ crunch_some_numbers, crunch_some_numbers_proto])
     
-    print('Spinning up AI Worker')
+    print('Spinning up 🐍 Python Activity Worker')
     await worker.run()
 
 if __name__ == "__main__":
