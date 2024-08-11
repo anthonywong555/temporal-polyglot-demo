@@ -84,7 +84,7 @@ protoc -I=. --python_out=. ai-messages.proto
 ```
 
 ```sh
-poetry run python python/activity_worker.py
+poetry run python python/protobufs_activity_worker.py
 ```
 
 ### NodeJS
@@ -96,5 +96,5 @@ npm run build
 ```
 
 ```sh
-npm run workflow-grpc
+npm run workflow-protobufs
 ```
