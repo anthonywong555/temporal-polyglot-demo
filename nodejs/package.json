@@ -6,6 +6,7 @@
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
     "workflow": "ts-node src/client.ts",
+    "workflow-grpc": "ts-node src/client-grpc.ts",
     "build": "npm-run-all build:protos build:ts",
     "build.watch": "npm-run-all build:protos build:ts-watch",
     "build:ts": "tsc --build",

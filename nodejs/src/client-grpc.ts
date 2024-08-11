@@ -1,18 +1,23 @@
 import { Connection, Client } from '@temporalio/client';
-import { simpleExample, protobufExample } from './workflows';
+import { protobufExample } from './workflows';
 import { nanoid } from 'nanoid';
 import { ai } from '../protos/root'; 
 
 async function run() {
+  const connection = await Connection.connect({ address: 'localhost:7233' });
+
   const client = new Client({
+    connection,
     dataConverter: { payloadConverterPath: require.resolve('./payload-converter') }
   });
 
   const handle = await client.workflow.start(protobufExample, {
+    taskQueue: `polyglot-nodejs`,
     args: [ai.NumberCrushingInput.create({ input: 1 })],
-    taskQueue: `hello-world`,
-    workflowId: `protobuf-workflow-${nanoid()}`
+    workflowId: `polyglot-workflow-protobuf-${nanoid()}`
   });
+
+  console.log(`Started workflow ${handle.workflowId}`);
 
   const result: ai.NumberCrushingOutput = await handle.result();
   console.log(result.toJSON());

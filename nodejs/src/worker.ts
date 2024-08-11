@@ -8,7 +8,7 @@ async function run() {
   const worker = await Worker.create({
     connection,
     namespace: 'default',
-    taskQueue: 'hello-world',
+    taskQueue: 'polyglot-nodejs',
     workflowsPath: require.resolve('./workflows'),
     dataConverter: { payloadConverterPath: require.resolve('./payload-converter') }
   });

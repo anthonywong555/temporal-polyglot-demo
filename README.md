@@ -90,3 +90,7 @@ To convert the *ai-messages.proto* file into a *json-module.js*, execute the fol
 ```sh
 npm run build
 ```
+
+```sh
+npm run workflow-grpc
+```

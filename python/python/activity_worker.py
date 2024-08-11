@@ -1,3 +1,5 @@
+#!/bin/sh
+
 import asyncio
 import python.ai_messages_pb2 as ai_messages_pb2
 
@@ -6,7 +8,7 @@ from temporalio import activity
 from temporalio.client import Client
 from temporalio.worker import Worker
 
-task_queue = "ai-queue"
+task_queue = "polyglot-python"
 
 @activity.defn(name="numberCrushing")
 async def crunch_some_numbers(input: int) -> int:

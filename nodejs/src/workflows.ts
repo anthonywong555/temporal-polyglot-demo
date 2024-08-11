@@ -7,7 +7,7 @@ interface AIActivities {
 }
 
 const { numberCrushing, numberCrushingProto } = proxyActivities<AIActivities>({
-  taskQueue: 'ai-queue',
+  taskQueue: 'polyglot-python',
   scheduleToCloseTimeout: '1m'
 });
 
