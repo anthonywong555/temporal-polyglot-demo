@@ -14,7 +14,7 @@ async function run() {
   const handle = await client.workflow.start(protobufExample, {
     taskQueue: `polyglot-nodejs`,
     args: [ai.NumberCrushingInput.create({ input: 1 })],
-    workflowId: `polyglot-workflow-protobuf-${nanoid()}`
+    workflowId: `polyglot-workflow-protobufs-${nanoid()}`
   });
 
   console.log(`Started workflow ${handle.workflowId}`);
