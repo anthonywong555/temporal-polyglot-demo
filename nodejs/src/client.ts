@@ -99,8 +99,8 @@ async function runComplex() {
 }
 
 async function run() {
-  //kickStartWorkflows(10, ['Temporal'])
-  await runComplex();
+  kickStartWorkflows(10, ['Temporal'])
+  //await runComplex();
 }
 
 run().catch((err) => {

@@ -1,5 +1,5 @@
 import asyncio
-import python.python.ai_messages_pb2 as ai_messages_pb2
+import python.ai_messages_pb2 as ai_messages_pb2
 
 from random import randint
 from temporalio import activity
@@ -24,7 +24,7 @@ async def main():
     client = await Client.connect("localhost:7233")
 
     # Run activity worker
-    #worker = Worker(client, task_queue=task_queue, activities=[crunch_some_numbers, crunch_some_numbers_proto], max_task_queue_activities_per_second=1)
+    # worker = Worker(client, task_queue=task_queue, activities=[crunch_some_numbers, crunch_some_numbers_proto], max_task_queue_activities_per_second=1)
     worker = Worker(client, task_queue=task_queue, activities=[ crunch_some_numbers, crunch_some_numbers_proto])
     
     print('Spinning up AI Worker')
