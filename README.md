@@ -8,11 +8,13 @@ This repo demostrates how you can use Temporal with other langauges.
 
 ### Python
 
+- Python >= 3.8
 - [Poetry](https://python-poetry.org/docs/#installation)
 
 ### NodeJS
 
-- [Node Version Manager](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)
+- Node 16+
+- Or use a [Node Version Manager](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)
 
 ### gRPC (Optional)
 
@@ -77,11 +79,13 @@ To run the gRPC demo, you will first need to do the following.
 
 ### Python
 
-To convert the *ai-messages.proto* file into *ai_messages_pb2.py*, execute the following command:
+To convert the protos into _pd2.py, execute the following command:
 
 ```sh
 protoc -I=../protos/ --python_out=./python messages.proto namespaced-messages.proto
 ```
+
+Then spin up the Protobufs Python Activity Worker.
 
 ```sh
 poetry run python python/protobufs_activity_worker.py
@@ -89,11 +93,13 @@ poetry run python python/protobufs_activity_worker.py
 
 ### NodeJS
 
-To convert the *ai-messages.proto* file into a *json-module.js*, execute the following command:
+To convert the protos file into a json-module.js, execute the following command:
 
 ```sh
 npm run build
 ```
+
+Then kick off the Protobufs NodeJS Client.
 
 ```sh
 npm run workflow-protobufs
