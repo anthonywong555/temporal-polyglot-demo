@@ -6,7 +6,7 @@ from temporalio import activity
 from temporalio.client import Client
 from temporalio.worker import Worker
 
-task_queue = "polyglot-python"
+task_queue = "polyglot-python-protobufs"
 
 @activity.defn(name="numberCrushingProto")
 async def crunch_some_numbers_proto(input: ai_messages_pb2.NumberCrushingInput) -> ai_messages_pb2.NumberCrushingOutput:

@@ -7,6 +7,7 @@
     "start.watch": "nodemon src/worker.ts",
     "workflow": "ts-node src/client.ts",
     "workflow-protobufs": "ts-node src/client-protobufs.ts",
+    "rate-limits": "ts-node src/client-rate-limits.ts",
     "build": "npm-run-all build:protos build:ts",
     "build.watch": "npm-run-all build:protos build:ts-watch",
     "build:ts": "tsc --build",

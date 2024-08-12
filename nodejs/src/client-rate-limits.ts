@@ -1,5 +1,5 @@
 import { Connection, Client } from '@temporalio/client';
-import { simpleExample } from './workflows';
+import { simpleExample, rateLimitExample } from './workflows';
 import { nanoid } from 'nanoid';
 
 const NUMBER_OF_WORKFLOW_EXECUTIONS = 10;
@@ -51,7 +51,7 @@ async function run() {
     const workflowExecutions = [];
 
     for(let i = 0; i < NUMBER_OF_WORKFLOW_EXECUTIONS; i++) {
-      workflowExecutions.push(client.workflow.start(simpleExample, {
+      workflowExecutions.push(client.workflow.start(rateLimitExample, {
         taskQueue: 'polyglot-nodejs',
         args: [i],
         workflowId: `polyglot-${i}-${nanoid()}`,
