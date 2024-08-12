@@ -13,6 +13,7 @@ async function run() {
     dataConverter: { payloadConverterPath: require.resolve('./payload-converter') }
   });
 
+  console.log(`Spinning up NodeJS Workflow Worker`);
   await worker.run();
 }
 

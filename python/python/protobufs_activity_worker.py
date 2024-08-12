@@ -1,26 +1,26 @@
 import asyncio
-import python.ai_messages_pb2 as ai_messages_pb2
+import python.messages_pb2 as messages_pb2
+import python.namespaced_messages_pb2 as namespaced_messages_pb2
 
-from random import randint
 from temporalio import activity
 from temporalio.client import Client
 from temporalio.worker import Worker
 
 task_queue = "polyglot-python"
 
-@activity.defn(name="numberCrushingProto")
-async def crunch_some_numbers_proto(input: ai_messages_pb2.NumberCrushingInput) -> ai_messages_pb2.NumberCrushingOutput:
-    result = ai_messages_pb2.NumberCrushingOutput()
-    result.output = input.input
-    return result
+@activity.defn
+async def compose_greeting_protobufs(input: messages_pb2.ComposeGreetingInput) -> namespaced_messages_pb2.ComposeGreetingResponse:
+    response = namespaced_messages_pb2.ComposeGreetingResponse()
+    response.message = f"Hello, {input.name}!"
+    return response
 
 async def main():
     print('Connecting to Temporal')
     client = await Client.connect("localhost:7233")
 
-    worker = Worker(client, task_queue=task_queue, activities=[crunch_some_numbers_proto])
+    worker = Worker(client, task_queue=task_queue, activities=[compose_greeting_protobufs])
     
-    print('Spinning up 🐍 Protobufs Python Activity Worker')
+    print('Spinning up Protobufs Python Activity Worker')
     await worker.run()
 
 if __name__ == "__main__":

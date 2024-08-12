@@ -1,7 +1,7 @@
 import { Connection, Client } from '@temporalio/client';
 import { protobufExample } from './workflows';
 import { nanoid } from 'nanoid';
-import { ai } from '../protos/root'; 
+import { foo, ComposeGreetingInput } from '../protos/root'; 
 
 async function run() {
   const connection = await Connection.connect({ address: 'localhost:7233' });
@@ -13,14 +13,14 @@ async function run() {
 
   const handle = await client.workflow.start(protobufExample, {
     taskQueue: `polyglot-nodejs`,
-    args: [ai.NumberCrushingInput.create({ input: 1 })],
+    args: [ComposeGreetingInput.create({ name: 'Temporal' })],
     workflowId: `polyglot-workflow-protobufs-${nanoid()}`
   });
 
   console.log(`Started workflow ${handle.workflowId}`);
 
-  const result: ai.NumberCrushingOutput = await handle.result();
-  console.log(result.toJSON());
+  const result: foo.bar.ComposeGreetingResponse = await handle.result();
+  console.log(result.message);
 }
 
 run().catch((err) => {

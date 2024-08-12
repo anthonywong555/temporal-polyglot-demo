@@ -1,22 +1,22 @@
 import { proxyActivities } from '@temporalio/workflow';
-import { ai } from '../protos/root';
+import { foo, ComposeGreetingInput } from '../protos/root';
 
 interface AIActivities {
-  numberCrushing(input: number): Promise<number>,
-  numberCrushingProto(input: ai.NumberCrushingInput): Promise<ai.NumberCrushingOutput>
+  compose_greeting(name: string): Promise<string>,
+  compose_greeting_protobufs(input: ComposeGreetingInput): Promise<foo.bar.ComposeGreetingResponse>
 }
 
-const { numberCrushing, numberCrushingProto } = proxyActivities<AIActivities>({
+const { compose_greeting, compose_greeting_protobufs } = proxyActivities<AIActivities>({
   taskQueue: 'polyglot-python',
   scheduleToCloseTimeout: '1m'
 });
 
-export async function simpleExample(input: number): Promise<number> {
-  const result = await numberCrushing(input);
+export async function example(name: string): Promise<string> {
+  const result = await compose_greeting(name);
   return result;
 }
 
-export async function protobufExample(input: ai.NumberCrushingInput): Promise<ai.NumberCrushingOutput> {
-  const result = await numberCrushingProto(input);
+export async function protobufExample(input: ComposeGreetingInput): Promise<foo.bar.ComposeGreetingResponse> {
+  const result = await compose_greeting_protobufs(input);
   return result;
 }

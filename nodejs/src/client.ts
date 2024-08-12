@@ -1,5 +1,5 @@
 import { Connection, Client } from '@temporalio/client';
-import { simpleExample } from './workflows';
+import { example } from './workflows';
 import { nanoid } from 'nanoid';
 
 async function run() {
@@ -9,9 +9,9 @@ async function run() {
     connection
   });
 
-  const handle = await client.workflow.start(simpleExample, {
+  const handle = await client.workflow.start(example, {
     taskQueue: 'polyglot-nodejs',
-    args: [1],
+    args: ['Temporal'],
     workflowId: `polyglot-workflow-${nanoid()}`,
   });
 
